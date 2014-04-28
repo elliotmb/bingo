@@ -1,0 +1,54 @@
+
+<html>
+  <head>
+    <title>INFO 450 WITH ADAM MOORE</title>
+	<script src="bingo.js"></script>
+	<link rel="stylesheet" type="text/css" href="bango.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://173.250.180.58:843/');
+		var username;
+		while(!username){
+			username = prompt("Please Enter a Username");
+		}
+		var called = new Array();
+		socket.emit('addPlayer',{username:username});
+		socket.on('updateList',function(data){
+			var temp = document.getElementById('playerList');
+			temp.innerText=data.pl;
+		});
+		
+		socket.on('win',function(data){
+			win(data.nm);
+		});
+		
+		socket.on('loose',function(data){
+			alert(data.nm+" YOU ARE A LOOSER");
+		});
+		socket.on('basicS',function(data){
+			basicSetup();
+		});
+		socket.on('adminS',function(data){
+			adminSetup();
+		});
+		socket.on('chatIn',function(data){
+			var k = document.createElement('div');
+		
+			var l=document.createTextNode(data.user+": "+data.message);
+			k.appendChild(l);
+			
+			document.getElementById('chat').insertBefore(k,document.getElementById('chat').childNodes[0]);
+		});
+	</script>
+
+  </head>
+  <body>
+  <h2><img src='am.png'/></h2>
+  <div id='board'></div>
+  <div id='chat'><div>Chat goes here</div><div>Chat goes here</div></div>
+  <div id='textwrap'>enter to send<textarea id='textarea' onkeyup='send(event)'></textarea></div>
+  <h6>No philosopher we have covered has been alive during the internet.</h6>
+  <!--<h6>There is a mod. They choose whether or not the square is valid. When someone wins, all players will be notified</h6>-->
+  </body>
+</html>

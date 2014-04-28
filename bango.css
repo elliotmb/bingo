@@ -1,0 +1,78 @@
+body{
+text-align:center;
+}
+#board{
+	width:600px;
+	height:600px;
+	margin-right:auto;margin-left:auto;
+	border:2px solid black;
+	border-radius:10px;
+}
+#board>div{
+	width:100px;
+	height:100px;
+	display:inline-block;
+	border: 6px solid black;
+	border-radius:10px;
+	vertical-align:middle;
+	text-align:center;
+	font:bold 90% arial,sans-serif;
+	padding:2px;
+	margin:2px;
+	
+}
+span{
+	display:block;
+	width: 380px;
+	border:1px solid black;
+	font:bold 90% arial,sans-serif;
+}
+span.called{
+	background-color:black;
+	padding:0px;
+	margin:0px;
+}
+#board>div.selected{
+	border: 6px solid red;
+}
+#chat>div:nth-child(odd){
+	background-color:#ccccff;
+	
+}
+#chat>div{
+max-width:300px;
+border:0px;
+word-wrap:break-word;
+}
+#chat{
+	text-align:left;
+	top:10px;
+	right:0px;
+	width:300px;
+	height:400px;
+	padding:0px;
+	margin:0px;
+	border: 4px solid black;
+	border-radius: 10px;
+	position:fixed;
+	overflow:auto;
+	background-color:white;
+}
+#textarea{
+	text-align:left;
+	width:300px;
+	min-height:45px;
+}
+#textwrap{
+	width:300px;
+	border: 4px solid black;
+	border-radius: 10px;
+	top:420px;
+	right:0px;
+	position:fixed;
+	
+}
+input{
+height:50px;
+}
+
