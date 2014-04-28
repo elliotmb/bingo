@@ -64,6 +64,8 @@ io.sockets.on('connection', function (socket) {
 		}
     });
 	
+
+    // win script
 	socket.on('checkMaster', function(data){
 	var boo=true;
 	console.log(data.t);
