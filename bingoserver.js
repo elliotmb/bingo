@@ -82,12 +82,13 @@ io.sockets.on('connection', function (socket) {
 	
 
 	
-/*	socket.on('addCalled',function(data){
+	socket.on('addCalled',function(data){
 		if(modList[this.id] == "say you" || modList[this.id]=="so cool"){
 			called.push(parseInt(data.number));
 		}
+		socket.broadcast.emit('callback',{stuff:'stuff'});
 		console.log(called);
-	});*/
+	});
 
 
 });

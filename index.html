@@ -32,6 +32,9 @@
 		socket.on('adminS',function(data){
 			adminSetup();
 		});
+		socket.on('callback',function(data){
+			checkMaster();
+		});
 		socket.on('chatIn',function(data){
 			var k = document.createElement('div');
 		
