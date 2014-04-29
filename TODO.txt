@@ -2,3 +2,7 @@ TODO:
 
 - Edit the CSS to make it prettier
 - Add wrong tile checking when checking each move
+- Move setup functions to server
+- Add hashes for mod passwords
+- Allow first user to select what class (INFO 340,INFO 450, INFO whatever) to build
+- Create canvas draw script to dynamicaly create the BINGO header image from a singel image
