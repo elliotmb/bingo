@@ -22,7 +22,6 @@ function handler(req, res) {
         'css': 'text/css'
     };
     var contentType = contentTypesByExtention[extname];
-    //console.log(contentType);
     fs.exists(filePath, function (exists) {
         if (exists) {
             fs.readFile(filePath, function (error, content) {

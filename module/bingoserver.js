@@ -4,7 +4,6 @@ function bingoServer(port, args) {
     this.users = {};
     this.userSockets = {};
     this.socket = io.listen(port, args);
-
     this.setUpSocketListener();
 }
 
