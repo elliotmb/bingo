@@ -5,6 +5,7 @@ var app = require('http').createServer(handler),
 var playerList = new Array();
 var modList = new Array();
 var called = new Array();
+
 app.listen(843);
 
 function handler(req, res) {
@@ -42,15 +43,23 @@ function handler(req, res) {
     });
 }
 
-
 io.sockets.on('connection', function (socket) {
+
     socket.emit('news', {
         hello: 'world'
     });
-  socket.on('send',function(data){
-	io.sockets.emit('chatIn',{user:playerList[this.id], message:data.message});
-  });
 
+    /*
+     * Adds new chat messages to the chat
+     */
+    socket.on('send',function(data){
+        io.sockets.emit('chatIn',{user:playerList[this.id], message:data.message});
+    });
+
+    /*
+     * Adds a player with a new randomized board to the game, checks for admin accts and
+     * adds them to the game accordingly 
+     */
     socket.on('addPlayer', function (data) {
 		console.log(data);
 		if(data.username == "say you" || data.username == "so cool"){
@@ -63,9 +72,10 @@ io.sockets.on('connection', function (socket) {
 			console.log(playerList);
 		}
     });
-	
 
-    // win script
+    /*
+     * Checks if someone has won the game yet based on the tiles called by the admin
+     */
 	socket.on('checkMaster', function(data){
 	var boo=true;
 	console.log(data.t);
@@ -80,8 +90,9 @@ io.sockets.on('connection', function (socket) {
 			}
 	});
 	
-
-	
+	/*
+     * Adds to list of valid tiles when on an admin acct
+     */
 	socket.on('addCalled',function(data){
 		if(modList[this.id] == "say you" || modList[this.id]=="so cool"){
 			called.push(parseInt(data.number));
