@@ -6,13 +6,14 @@ var mime = require('./mime');
 
 function FileServer(port) {
     var server = http.createServer(function(req, res) {
-        var parsedUrl = url.parse(req.url);
+        var filePath = req.url;
         // default to index if root request
-        if (parsedUrl.pathname === '/') {
-            parsedUrl.pathname = '/index.html';
+        if (filePath === '/') {
+            filePath = './index.html';
+        } else {
+            filePath = './' + req.url 
         }
-        var filename = './public' + parsedUrl.pathname;
-        fs.exists(filename, function (exists) {
+        fs.exists(filePath, function (exists) {
             if (exists) {
                 res.writeHeader(200, {'Content-Type': mime.lookup(filename)});
                 fs.createReadStream(filename).pipe(res);
