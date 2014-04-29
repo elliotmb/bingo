@@ -13,35 +13,35 @@ function makeGrid() {
 		grid[Math.floor(k/5)][k%5] = temp;
 		used.push(temp);
 	}
-	grid[2][2] = 0;
+	grid[2][2] = 0;//Assigns free square
 	return grid;
 }
 
+//Basic update script. Legacy code left for partial update checks, consider readding
 function update(elem){
 	if(elem.className != "selected"){
 		elem.className = 'selected';
-		
 		if (checkRow()/*Bingo(parseInt(elem.id))*/ != null){
 			//console.log(checkBingo(parseInt(elem.id)));
 			checkMaster();
 		}
-
 	}else{
 		elem.className = "";
 	}
 }
 
+//Admin update script
 function updateA(elem){
 	if(elem.className != "called"){
-		elem.className = 'called';//fill in later
+		elem.className = 'called';
 		socket.emit('addCalled',{number:elem.id});
 	}else{
-		elem.className = "";//Fill this in later
+		elem.className = "";
 	}
 }
 
-function checkBingo(square){
-	console.log("square "+square);
+//unused consider readding with dynamic checking
+/*function checkBingo(square){
 	var codes = [[0,5,10],[0,6],[0,7],[0,8],[0,9,11],[1,5],[1,6,10],[1,7],[1,8,11],[1,9],[2,5],[2,6],[2,7,10,11],[2,8],[2,9],[3,5],[3,6,11],[3,7],[3,8,10],[3,9],[4,5,11],[4,6],[4,7],[4,8],[4,9,10]];
 	var tiles = new Array();
 	for(var i = 0;i < codes[square].length;i++){
@@ -49,10 +49,9 @@ function checkBingo(square){
 			tiles = tiles.concat(checkRow(codes[square][i]));
 		}
 	}
-	console.log(tiles);
 	return tiles;
-}
-
+}*/
+//Unused, consider reusing with dynamic checkBingo()
 /*function checkRow(rowNum){
 	var rows =	[[0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19],[20,21,22,23,24],[0,5,10,15,20],[1,6,11,16,21],[2,7,12,17,22],[3,8,13,18,23],[4,9,14,19,24],[0,6,12,18,24],[4,8,12,16,20]];
 	var squares = document.getElementById('board').getElementsByTagName('div');
@@ -68,6 +67,7 @@ function checkBingo(square){
 	return tiles;
 }*/
 
+//chat send function
 function send(e){
 	if(e.keyCode == 13)
 	{
@@ -75,6 +75,7 @@ function send(e){
 		document.getElementById('textarea').value='';
 	}
 }
+//No longer checks just rows. Checks every row. May fix this
 function checkRow(){
 	var cb=false;
 	var rows =	[[0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19],[20,21,22,23,24],[0,5,10,15,20],[1,6,11,16,21],[2,7,12,17,22],[3,8,13,18,23],[4,9,14,19,24],[0,6,12,18,24],[4,8,12,16,20]];
@@ -93,7 +94,6 @@ function checkRow(){
 		}
 		if(cb){
 			stiles=stiles.concat(ttiles);
-			console.log(stiles);
 		}
 	}
 	return stiles;
@@ -112,14 +112,17 @@ function getTiles(){
 
 function checkMaster(){
 	var tiles=checkRow();
-	console.log(tiles);
 	if( tiles.length>=4){
 		socket.emit('checkMaster',{t:tiles});
 	}
 }
+
+//Needs more flashing lights
 function win(nm){
 	alert("HEY EVERYONE "+nm+" IS A WINNER TODAY!");
 }
+
+//Consider moving to serverscirpt, see note in index.html
 function basicSetup(){
 	var bod = document.getElementById('board');
 	for(var m=0;m<25;m++){
