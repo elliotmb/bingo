@@ -7,7 +7,7 @@
 	<script src="/socket.io/socket.io.js"></script>
 
 	<script>
-		var socket = io.connect('http://173.250.200.18:843/');//Make sure this is changed to host IP + :843
+		var socket = io.connect('http://173.250.146.18:843/');//Make sure this is changed to host IP + :843
 		var username;
 		while(!username){
 			username = prompt("Please Enter a Username");
@@ -67,7 +67,7 @@
 	  <h6>No philosopher we have covered has been alive during the internet.</h6>
 	  -->
   <h2><img src='am.png'/></h2><!--Needs to be dynamically assigned-->
-  <div>to play, click on the squares as he does his predictable behavior</div>
+  <div>to play, click on the squares as he does his predictable behaviour</div>
   <div id='board'></div>
   <div id='chat'></div>
   <div id='textwrap'>type in the box, then press enter to send<textarea id='textarea' onkeyup='send(event)'></textarea></div>
