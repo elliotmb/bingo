@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>INFO 450 WITH ADAM MOORE</title>
+    <title>INFO 450 BINGO</title>
 	<script src="./js/bingo.js"></script>
 	<link rel="stylesheet" type="text/css" href="bango.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,6 +12,7 @@
 		while(!username){
 			username = prompt("Please Enter a Username");
 		}
+		
 		socket.emit('addPlayer',{username:username});
 		
 		//added for playerList feature, may not use
@@ -52,6 +53,7 @@
 		socket.on('chatIn',function(data){
 			var k = document.createElement('div');
 			var l=document.createTextNode(data.user+": "+data.message);
+			document.title ="INFO 450 BINGO"+"("+data.user+" says)";
 			k.appendChild(l);
 			document.getElementById('chat').insertBefore(k,document.getElementById('chat').childNodes[0]);
 		});
