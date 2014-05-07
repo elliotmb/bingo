@@ -52,6 +52,7 @@ io.sockets.on('connection', function (socket) {
      * Adds new chat messages to the chat
      */
     socket.on('send',function(data){
+	//socket.broadcast.emit
         io.sockets.emit('chatIn',{user:playerList[this.id], message:data.message});
     });
 

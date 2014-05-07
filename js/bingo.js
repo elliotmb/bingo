@@ -74,6 +74,14 @@ function send(e){
 		socket.emit('send',{message:document.getElementById('textarea').value});
 		document.getElementById('textarea').value='';
 	}
+	/*
+	var k = document.createElement('div');
+			var l=document.createTextNode(username+": "+document.getElementById('textarea').value);
+			
+			k.appendChild(l);
+			document.getElementById('chat').insertBefore(k,document.getElementById('chat').childNodes[0]);
+	
+	*/
 }
 //No longer checks just rows. Checks every row. May fix this
 function checkRow(){
@@ -142,6 +150,9 @@ function basicSetup(){
 	}
 	boxs[12].className="selected";
 }
+window.onfocus= function(){
+	document.title ="INFO 450 BINGO";
+};
 function adminSetup(){
 	var bod = document.getElementById('board');
 

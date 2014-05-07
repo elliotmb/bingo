@@ -5,4 +5,6 @@ TODO:
 - Move setup functions to server
 - Add hashes for mod passwords
 - Allow first user to select what class (INFO 340,INFO 450, INFO whatever) to build
-- Create canvas draw script to dynamicaly create the BINGO header image from a singel image
+- Create canvas draw script to dynamically create the BINGO header image from a single image
+
+-switch the message script on the server to 'broadcast' and uncomment the script in bingo.js that adds your comment to the box
